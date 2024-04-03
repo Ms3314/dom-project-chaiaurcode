@@ -1,11 +1,9 @@
-function stack(color) {
+alert(document.querySelector(".button").getAttribute('class'));
+
+function changer(color) {
   document.getElementById(color).addEventListener('click', function () {
-    change(color);
+    document.querySelector('body').style.background = color;;
   });
 }
 
-function change(color) {
-  document.querySelector('body').style.background = color;
-}
 
-stack('grey');
