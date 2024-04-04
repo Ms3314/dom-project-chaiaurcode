@@ -1,6 +1,6 @@
 const clicked = document.querySelectorAll(".button");
 clicked.forEach((t)=> {
-  t.addEventListener('click',function () {
+  t.addEventListener('mouseover',function () {
     const id = t.getAttribute('id')
     changer(id);
   })
