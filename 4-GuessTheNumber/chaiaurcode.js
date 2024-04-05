@@ -2,12 +2,18 @@ let randomNum = Math.floor(Math.random()*100+1)
 
 const inputfield = document.getElementById('guessField')
 const submit = document.querySelector('#subt')
+const end = document.querySelector('.end')
 // the above are for the inputfie and the submit button 
 let playgame = true
+const div = document.querySelector('#wrapper')
 const mainDisplay = document.querySelector("#guess")
 const guessPrev = document.querySelector(".guesses")
 const guessLeft = document.querySelector(".lastResult")
 const LowHi = document.querySelector(".lowOrHi")
+const span = document.createElement('span')
+const bob = document.createElement('button')
+
+
 
 let Stage = 1 ;  
 if (playgame)
@@ -29,7 +35,14 @@ const validate = (guess) => {
     }else if(guess > 100) {
         alert("please enter number below 100")
     }else {
-        checker(guess)
+        if (Stage==11)
+        {
+            end.innerHTML = `<h2>the number was ${randomNum}</h2>`
+            endl()
+        }
+        else {
+            checker(guess)
+        }
     }
 }
 const checker = (guess) => {
@@ -57,5 +70,25 @@ const msgFunction = (guess) => {
 } 
 
 const endl= ()=> {
+    playgame = false
+    inputfield.value = ''
+    inputfield.setAttribute('disabled','')
+    div.appendChild(bob);
+    bob.innerHTML = 'Start again'
+    bob.setAttribute('id','button1')
+    startover()
+    
+}
 
+const startover = () => {
+    bob.addEventListener('click',function(){
+        randomNum = Math.floor(Math.random()*100+1)
+        inputfield.removeAttribute('disabled')
+        div.removeChild(bob);
+        end.innerHTML = ''
+        Stage = 1
+        playgame = true
+        guessPrev.innerHTML = ''
+    })
+    
 }
