@@ -20,20 +20,20 @@ if (playgame)
 }
 
 const validate = (guess) => {
-    if (!isNaN(guess)) 
+    if (isNaN(guess)) 
     {
-        mainDisplay.innerHTML = 'Please enter a valid number '
-    }else if (guess < 100 && guess > 0)
+        alert('Please enter a valid number ')
+    }else if (guess < 0)
     {
-        mainDisplay.innerHTML = 'Please enter a number below 100 and above 0 '
-    }
-    else {
-        mainDisplay.innerHTML = ' Guess a number'
+        alert('Please enter number below 0 ')
+    }else if(guess > 100) {
+        alert("please enter number below 100")
+    }else {
         checker(guess)
     }
 }
 const checker = (guess) => {
-    if (randomNum == guess)
+    if (randomNum === guess)
     {
         LowHi.innerHTML = 'You Have guessed it right'
         msgFunction(guess) // to showcase guesses and lastVal
@@ -42,14 +42,16 @@ const checker = (guess) => {
     else if (randomNum > guess) {
         LowHi.innerHTML = 'TOO low'
         msgFunction(guess)
-    }else if (randomNum < guess)
+    }else if (randomNum < guess){
         LowHi.innerHTML = 'TOO high'
         msgFunction(guess)
-}
+}}
 
 const msgFunction = (guess) => {
+    
     Stage++
-    guessPrev.innerHTML += `${guess}`
+    guessPrev.innerHTML += `${guess},`
+
     guessLeft.innerHTML = `${11-Stage}`
     
 } 
